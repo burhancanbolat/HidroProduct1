@@ -1,0 +1,93 @@
+﻿@model IEnumerable<White.Data.AppUser>
+
+@{
+    ViewData["Title"] = "Kullanıcılar";
+}
+
+<div class="d-flex py-2">
+    <a asp-action="Create" class="btn btn-success ms-auto">
+        <i class="bi bi-plus"></i>
+        Yeni Kayıt
+    </a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ad Soyad
+            </th>
+
+            <th>
+                E-Posta
+            </th>
+
+            <th>
+                Parola
+            </th>
+            <th>
+                Firma Adı
+            </th>
+            <th>
+                Kullanıcı Rolü
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierName)
+
+                </td>
+                
+
+                <td>
+                    <a class="btn btn-primary remove-btn" asp-action="Delete" asp-route-id="@item.Id">
+                        <i class="bi bi-trash"></i>
+                        Sil
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+
+
+
+        $(() => {
+            $('.remove-btn').on('click', (evt) => {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'UYARI!',
+                    html: 'Eminmisiniz?',
+                    showCancelButton: true,
+                    cancelButtonText: 'İptal',
+                    confirmButtonText: 'Sil'
+
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = $(evt.currentTarget).attr('href');
+                    }
+                })
+                return false;
+            });
+        })
+    </script>
+}

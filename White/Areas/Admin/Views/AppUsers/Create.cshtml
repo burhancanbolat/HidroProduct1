@@ -1,0 +1,84 @@
+﻿@model White.Data.AppUser
+
+@{
+    ViewData["Title"] = "Kullanıcı Ekle";
+}
+
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Ad-Soyad</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger">Boş bırakılamaz...</span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label">E-Posta</label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger">Boş bırakılamaz...</span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SupplierName" class="control-label">Firma Adı</label>
+                <input asp-for="SupplierName" class="form-control" />
+                <span asp-validation-for="SupplierName" class="text-danger">Boş bırakılamaz...</span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Parola</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger">En az 7 karakter Büyük,küçük harf,sayı ve noktalama işaretleri zorunludur!</span>
+            </div>
+
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="IsAdministrator">
+                    <label class="form-check-label" asp-for="IsAdministrator">Admin</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="IsSilici">
+                    <label class="form-check-label" asp-for="IsSilici">Silici</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="IsKaydedici">
+                    <label class="form-check-label" asp-for="IsKaydedici">Kaydedici</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div>
+                    
+                    <label  asp-for="IsGörüntüleyici">Görüntüleyici</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="IsGüncelleyici">
+                    <label class="form-check-label" asp-for="IsGüncelleyici">Güncelleyici</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    Kaydet
+                </button>
+                <a class="btn btn-primary" asp-action="Index">İptal</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
